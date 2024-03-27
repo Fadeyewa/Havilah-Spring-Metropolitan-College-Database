@@ -1,0 +1,8 @@
+SELECT TOP (1000) [index]
+      ,[SongID]
+      ,[TimeStamp_Central]
+      ,[Performer]
+      ,[Album]
+      ,[Song]
+      ,[TimeStamp_UTC]
+  FROM [PortfolioProject].[dbo].['STREAMING ACTIVITY$']
