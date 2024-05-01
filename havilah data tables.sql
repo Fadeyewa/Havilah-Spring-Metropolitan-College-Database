@@ -1,7 +1,66 @@
- DROP DATABASE IF EXISTS HAVILAH_SPRING_METROPOLITAN_COLLEGE
+DROP DATABASE IF EXISTS HAVILAH_SPRING_METROPOLITAN_COLLEGE
 CREATE DATABASE HAVILAH_SPRING_METROPOLITAN_COLLEGE
 USE HAVILAH_SPRING_METROPOLITAN_COLLEGE;
 
+
+DROP TABLE IF EXISTS teachers_names;
+CREATE TABLE teachers_names (
+  teachers_id VARCHAR(50) NOT NULL,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  PRIMARY KEY (teachers_id)
+); 
+
+INSERT INTO teachers_names (teachers_id, first_name, last_name)
+VALUES
+('HSCT001', 'Evelin', 'Farmiloe'),
+('HSCT002', 'Genna', 'Roderick'),
+('HSCT003', 'Lorry', 'O''Gaven'),
+('HSCT004', 'Caty', 'Alaway'),
+('HSCT005', 'Cesya', 'Blaxley'),
+('HSCT006', 'Gertrud', 'Doblin'),
+('HSCT007', 'Dunn', 'Crutchley'),
+('HSCT008', 'Jill', 'Rivalland'),
+('HSCT009', 'Jules', 'Pickford'),
+('HSCT010', 'Lacie', 'Brosh'),
+('HSCT011', 'Randolf', 'Ludford'),
+('HSCT012', 'Jerrilee', 'MacGille'),
+('HSCT013', 'Zachary', 'Janny'),
+('HSCT014', 'Britta', 'Boyson'),
+('HSCT015', 'Yvette', 'Ortelt'),
+('HSCT016', 'Julissa', 'Rissom'),
+('HSCT017', 'Vinnie', 'Medforth'),
+('HSCT018', 'Dyann', 'Galey'),
+('HSCT019', 'Patti', 'Peyes');
+
+DROP TABLE IF EXISTS teachers_classes;
+CREATE TABLE teachers_classes (
+  classes VARCHAR(50), 
+  teachers_id VARCHAR(50)
+  FOREIGN KEY REFERENCES teachers_names(teachers_id)
+);
+
+INSERT INTO teachers_classes (teachers_id, classes)
+VALUES
+('HSCT001', 'sss1, sss2, sss3'),
+('HSCT002', 'jss1, jss2, jss3, sss1'),
+('HSCT003', 'sss1, sss2'),
+('HSCT004', 'jss1, jss2, jss3'),
+('HSCT005', 'jss1, jss2, jss3'),
+('HSCT006', 'Pry 5'),
+('HSCT007', 'Pry 1'),
+('HSCT008', 'Pry 2'),
+('HSCT009', 'Nursery 2'),
+('HSCT010', 'Nursery 1'),
+('HSCT011', 'jss1, jss2, jss3'),
+('HSCT012', 'sss1, sss2, sss3'),
+('HSCT013', 'sss1, sss2, sss3'),
+('HSCT014', 'sss1, sss2, sss3'),
+('HSCT015', 'jss1, jss2, jss3'),
+('HSCT016', 'Pre-School'),
+('HSCT017', 'Pre-school'),
+('HSCT018', 'Pry 3'),
+('HSCT019', 'jss1, jss2, jss3');
 
 DROP TABLE IF EXISTS teachers_salary;
 CREATE TABLE teachers_salary (
@@ -11,40 +70,8 @@ CREATE TABLE teachers_salary (
   gender VARCHAR(10),
   salary VARCHAR(50),
   teachers_id VARCHAR(50) 
-  FOREIGN KEY REFERENCES teachers_data(teachers_id)
+  FOREIGN KEY REFERENCES teachers_names(teachers_id)
 );
-
-DROP TABLE IF EXISTS teachers_data;
-CREATE TABLE teachers_data (
-  teachers_id VARCHAR(50) NOT NULL,
-  first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
-  classes VARCHAR(50),
-  PRIMARY KEY (teachers_id)
-);
-
-INSERT INTO teachers_data (teachers_id, first_name, last_name, classes)
-VALUES
-('HSCT001', 'Mark', 'Esther', 'sss1, sss2, sss3'),
-('HSCT002', 'Adetiba', 'Mercy', 'jss1, jss2, jss3, sss1'),
-('HSCT003', 'Ola-Solomon', 'Mojisola', 'sss1, sss2'),
-('HSCT004', 'Chibogwu', 'Isaiah', 'jss1, jss2, jss3'),
-('HSCT005', 'Aderibigbe', 'Dorcas', 'jss1, jss2, jss3'),
-('HSCT006', 'Abiola', 'Rose', 'Pry 5'),
-('HSCT007', 'Moses', 'Comfort', 'Pry 1'),
-('HSCT008', 'Adekunle', 'Kehinde', 'Pry 2'),
-('HSCT009', 'Olorunjuwon', 'Anthonia', 'Nursery 2'),
-('HSCT010', 'Bamigboye', 'Folasade', 'Nursery 1'),
-('HSCT011', 'Oyebode', 'Victor', 'jss1, jss2, jss3'),
-('HSCT012', 'Promise', 'Oyedele', 'sss1, sss2, sss3'),
-('HSCT013', 'Sam', 'Omolehin', 'sss1, sss2, sss3'),
-('HSCT014', 'Ibitoyes', 'Kayode', 'sss1, sss2, sss3'),
-('HSCT015', 'Onuorah', 'Ginika', 'jss1, jss2, jss3'),
-('HSCT016', 'Odo', 'Stella', 'Pre-School'),
-('HSCT017', 'Peter', 'Rebecca', 'Pre-school'),
-('HSCT018', 'Adegboyega', 'Aderonke', 'Pry 3'),
-('HSCT019', 'Ademola', 'Mary', 'jss1, jss2, jss3');
-
 
 INSERT INTO teachers_salary (teachers_id, subjects, phone_number, age, gender, salary)
 VALUES
@@ -69,16 +96,6 @@ VALUES
 ('HSCT019', 'Social Studies, History, CRS', '081-345-670-00', 34, 'Female', 50000);
 
 
-
-
-	DROP TABLE IF EXISTS Students_data 
-	CREATE TABLE Students_data (
-	  date_of_birth VARCHAR(50),
-	  gender VARCHAR(10),
-	  Class VARCHAR(50),
-	  admission_number VARCHAR(50)
-	  FOREIGN KEY REFERENCES Students_names(admission_number)
-	  );
 
 DROP TABLE IF EXISTS Students_names
 CREATE TABLE Students_names (
@@ -364,6 +381,15 @@ VALUES
 ('HSC/445/23', 'Ogimi', 'Goodness'),
 ('HSC/446/23', 'Adegboye', 'Oluwapelumi');
 
+
+DROP TABLE IF EXISTS Students_data 
+CREATE TABLE Students_data (
+      date_of_birth VARCHAR(50),
+	  gender VARCHAR(10),
+	  Class VARCHAR(50),
+	  admission_number VARCHAR(50)
+	  FOREIGN KEY REFERENCES Students_names(admission_number)
+	  );
 
 INSERT INTO Students_data (admission_number, date_of_birth, gender, Class)
 VALUES
